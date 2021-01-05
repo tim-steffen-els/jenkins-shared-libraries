@@ -8,8 +8,8 @@ def warning(message) {
    echo "WARNING: ${message}"
 }
 
-def something() {
-	echo "why are you doing this"
+def error(message) {
+	echo "ERROR: ${message}"
 }
 
 def message(Map config=[:]) {
