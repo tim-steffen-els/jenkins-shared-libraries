@@ -1,5 +1,6 @@
 def call(Map config) {
     node {
+        echo "url ${config.url}"
         git url: config.url
         
     }
