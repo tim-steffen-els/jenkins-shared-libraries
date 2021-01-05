@@ -1,3 +1,5 @@
+import hudson.FilePath
+
 def info(message) {
     echo "INFO: ${message}"
 }
