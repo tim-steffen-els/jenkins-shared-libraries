@@ -19,3 +19,15 @@ def error(message) {
       }
     }
   } 
+
+def checkouttest(message) {
+	echo "ERROR: ${message}"
+	sh label: '', script: 'git clone https://github.com/tim-steffen-els/jenkins-shared-libraries.git'
+	echo "ERROR: ${message}"
+	git branch: 'main', url: "git@github.com:tim-steffen-els/jenkins-shared-libraries.git"
+	echo "ERROR: ${message}"
+}
+
+def checkout(){
+	sh label: '', script: 'git clone https://github.com/tim-steffen-els/jenkins-shared-libraries.git'
+}
