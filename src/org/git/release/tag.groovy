@@ -9,5 +9,5 @@ def warning(message) {
 }
 
 def call(Map config=[:]) {
-    git branch: config.gitbranch, url: config.repo
+    echo "branch: ${config.gitbranch}, url: ${config.repo}"
 }
