@@ -8,10 +8,11 @@ def warning(message) {
    echo "WARNING: ${message}"
 }
 
+def something() {
+	echo "why are you doing this"
+}
+
 def message(Map config=[:]) {
     echo "branch: ${config.gitbranch}, url: ${config.repo}"
 }
 
-def something() {
-	echo "why are you doing this"
-}
