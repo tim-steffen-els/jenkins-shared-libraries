@@ -1,6 +1,6 @@
 def call(repo, branch, version) {
-  pipeline {
-    agent any
+  //pipeline {
+   // agent any
     stages {
         stage("Cleaan Workspace"){
             steps {
@@ -44,5 +44,5 @@ def call(repo, branch, version) {
             }
         }
     }
-}
+//}
 }
