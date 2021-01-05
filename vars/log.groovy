@@ -6,6 +6,10 @@ def warning(message) {
     echo "WARNING: ${message}"
 }
 
+def checkout(message){
+	echo "CHECKING OUT: ${message}"
+	sh label: '', script: 'git clone https://github.com/tim-steffen-els/jenkins-shared-libraries.git'
+}
 
 def error(message) {
     pipeline {
@@ -28,6 +32,3 @@ def checkouttest(message) {
 	echo "ERROR: ${message}"
 }
 
-def checkout(){
-	sh label: '', script: 'git clone https://github.com/tim-steffen-els/jenkins-shared-libraries.git'
-}
