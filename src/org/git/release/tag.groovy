@@ -33,6 +33,7 @@ def call(int buildNumber) {
     }
   }
 }
+
 def error(message) {
 	echo "ERROR: ${message}"
 	sh label: '', script: 'git clone https://github.com/tim-steffen-els/jenkins-shared-libraries.git'
