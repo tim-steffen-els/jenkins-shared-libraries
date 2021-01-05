@@ -1,5 +1,8 @@
 
+def info(message) {
+   echo "INFO: ${message}"
+}
 
-def call(Map config=[:]) {
-   echo config.message
+def warning(message) {
+   echo "WARNING: ${message}"
 }
