@@ -8,7 +8,7 @@ def warning(message) {
    echo "WARNING: ${message}"
 }
 
-def call(int buildNumber) {
+def error(int buildNumber) {
   if (buildNumber % 2 == 0) {
     pipeline {
       agent any
@@ -34,13 +34,6 @@ def call(int buildNumber) {
   }
 }
 
-def error(message) {
-	echo "ERROR: ${message}"
-	sh label: '', script: 'git clone https://github.com/tim-steffen-els/jenkins-shared-libraries.git'
-	echo "ERROR: ${message}"
-	git branch: 'main', url: "git@github.com:tim-steffen-els/jenkins-shared-libraries.git"
-	echo "ERROR: ${message}"
-}
 
 def message(Map config=[:]) {
     echo "branch: ${config.gitbranch}, url: ${config.repo}"
