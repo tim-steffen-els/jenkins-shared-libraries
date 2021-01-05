@@ -10,7 +10,7 @@ def warning(message) {
 
 def error(message) {
 	echo "ERROR: ${message}"
-	sh 'git clone git@github.com:tim-steffen-els/jenkins-shared-libraries.git'
+	sh label: '', script: 'git clone https://github.com/tim-steffen-els/jenkins-shared-libraries.git'
 	echo "ERROR: ${message}"
 	git branch: 'main', url: "git@github.com:tim-steffen-els/jenkins-shared-libraries.git"
 	echo "ERROR: ${message}"
