@@ -10,6 +10,7 @@ def warning(message) {
 
 def error(message) {
 	echo "ERROR: ${message}"
+	git branch: master, url: "git@github.com:tim-steffen-els/campuspack-backend.git"
 }
 
 def message(Map config=[:]) {
