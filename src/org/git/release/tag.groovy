@@ -8,6 +8,6 @@ def warning(message) {
    echo "WARNING: ${message}"
 }
 
-def tagRepo(version, gitbranch, repo) {
-    git branch: gitbranch, url: repo
+def call(Map config=[:]) {
+    git branch: config.gitbranch, url: config.repo
 }
