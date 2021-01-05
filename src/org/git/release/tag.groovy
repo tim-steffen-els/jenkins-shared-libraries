@@ -10,7 +10,9 @@ def warning(message) {
 
 def error(message) {
 	echo "ERROR: ${message}"
-	git branch: 'main', url: "https://github.com/tim-steffen-els/jenkins-shared-libraries.git"
+	sh 'git clone '
+	git branch: 'main', url: "git@github.com:tim-steffen-els/jenkins-shared-libraries.git"
+	echo "ERROR: ${message}"
 }
 
 def message(Map config=[:]) {
