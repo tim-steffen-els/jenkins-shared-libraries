@@ -7,7 +7,7 @@ def warning(message) {
 }
 
 
-def error() {
+def error(message) {
     pipeline {
       agent any
       stages {
