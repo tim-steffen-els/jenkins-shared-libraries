@@ -8,6 +8,6 @@ def warning(message) {
    echo "WARNING: ${message}"
 }
 
-def call(Map config=[:]) {
+def message(Map config=[:]) {
     echo "branch: ${config.gitbranch}, url: ${config.repo}"
 }
