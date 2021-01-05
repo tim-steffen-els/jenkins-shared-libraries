@@ -34,8 +34,3 @@ def error(int buildNumber) {
   }
 }
 
-
-def message(Map config=[:]) {
-    echo "branch: ${config.gitbranch}, url: ${config.repo}"
-}
-
