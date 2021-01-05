@@ -8,6 +8,6 @@ def warning(message) {
    echo "WARNING: ${message}"
 }
 
-def tag(version, gitbranch, repo){
+def tagRepo(version, gitbranch, repo) {
     git branch: gitbranch, url: repo
 }
