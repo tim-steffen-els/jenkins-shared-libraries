@@ -4,7 +4,7 @@ def call(Map config) {
         log.info "Updating dependency ${config.dependency} to version ${config.version}"
         updatePackage(config.dependency, config.version, "package.json")
     } else {
-        log.ERROR "There is no package.json file to update. Skipping operation."
+        log.error "There is no package.json file to update. Skipping operation."
     }
 
 
