@@ -1,3 +1,6 @@
+def call(Map config){
+    log.info "WHY WHY WHY"
+}
 
 def updateDependency(Map config) {
     if (fileExists('package.json')) {
