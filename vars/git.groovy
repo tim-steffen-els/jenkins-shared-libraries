@@ -15,7 +15,7 @@ def push(version){
     sh "git push origin v${version}"
 }
 
-Boolean tagExist(tag){
-    List<String> tags = git tag -l
-    return tags.stream().anyMatch(a -> a.matches(tag))
-}
+//Boolean tagExist(tag){
+//    List<String> tags = git tag -l
+ //   return tags.stream().anyMatch(a -> a.matches(tag))
+//}
