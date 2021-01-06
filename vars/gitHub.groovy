@@ -17,6 +17,6 @@ def push(version){
 
 Boolean tagExist(tag){
     tags = sh label: '', returnStdout: true, script: 'git tag -l'
-    tags.split ('\n').collect(it as String)
+    tags.split ('\n').collect{it as String}
     return tags.contains(tag)
 }
