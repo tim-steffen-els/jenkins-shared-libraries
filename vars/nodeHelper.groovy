@@ -11,13 +11,13 @@ def updateDependency(Map config) {
     }
 
 }
+
 private def updatePackage(String dependency, version, fileName) {
 
     def file = readJSON file: fileName
     file['dependencies'][dependency] = version
 
     writeJSON file: fileName, json: file, pretty: 4
-
 }
 
 def updateVersion(Map config) {
@@ -26,6 +26,5 @@ def updateVersion(Map config) {
     file['version'] = config.version
 
     writeJSON file: config.fileName, json: file, pretty: 4
-
 }
 
