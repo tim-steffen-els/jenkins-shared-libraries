@@ -2,12 +2,21 @@
 def call(Map config) {
     node {
         echo "url ${config.url}, ${config.branch}, ${config.version}"
-        log.info "Checking out repo"
-        git branch: "${config.branch}", url: "${config.url}" 
+
+        log.info "Checking out repo ${config.url}"
+        git branch: "${config.branch}", url: "${config.url}"
+
+        log.info "Creating Tag ${config.version}"
         sh "git tag v${config.version}"
+
+        log.info "Pushing Tag to git"
         sh "git push origin v${config.version}"   
     }
 }
+
+
+
+
 
 //def call(repo, branch, version) {
 //  //pipeline {
@@ -43,14 +52,14 @@ def call(Map config) {
 //      //  }
 //        stage('Git create tag') {
 //            steps {
-//                //If this step fails, the tag already exist. 
+//                //If this step fails, the tag already exist.
 //                sh 'git tag -l'
 //                sh 'git tag v${VERSION}'
 //            }
 //        }
 //        stage('Create tag in Github') {
 //            steps {
-//                //If this step fails, it is likely something to do with credentials 
+//                //If this step fails, it is likely something to do with credentials
 //                sh 'git push origin v${VERSION}'
 //            }
 //        }
