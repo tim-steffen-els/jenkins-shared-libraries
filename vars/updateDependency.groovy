@@ -1,4 +1,5 @@
 def call(Map config) {
+    sh ls
     if(fileExists('package.json')){
         log.info "Updating dependency ${config.dependency} to version ${config.version}"
         updatePackage(config.dependency, config.version)
