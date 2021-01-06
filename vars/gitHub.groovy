@@ -16,6 +16,6 @@ def push(version){
 }
 
 Boolean tagExist(tag){
-    List<String> tags = sh label: '', returnStdout: true, script: 'git tag -l'
+    List<String> tags = sh label: '', returnStdout: true, script: 'git tag -l'  as List
     return tags.any{it == tag}
 }
