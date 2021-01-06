@@ -17,5 +17,7 @@ def push(version){
 
 Boolean tagExist(tag){
     List<String> tags = git tag -l
-    return tags.stream().anyMatch(a -> a.matches(tag))
+    log.info tags
+    //tags.stream().anyMatch(a -> matches(tag))
+    return false
 }
