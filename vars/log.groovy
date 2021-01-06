@@ -1,9 +1,17 @@
 
 def info(message) {
-    echo "INFO: ${message}"
+    standardFormat("INFO", message)
 }
 
 def warning(message) {
-    echo "WARNING: ${message}"
+    standardFormat("WARNING", message)
+}
+
+def error(message) {
+    standardFormat("ERROR", message)
+}
+
+private def standardFormat(premessage, message){
+    echo "${premessage}: ${message}"
 }
 

@@ -1,6 +1,8 @@
+
 def call(Map config) {
     node {
         echo "url ${config.url}, ${config.branch}, ${config.version}"
+        log.info "Checking out repo"
         git branch: "${config.branch}", url: "${config.url}" 
         sh "git tag v${config.version}"
         sh "git push origin v${config.version}"   
