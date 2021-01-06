@@ -3,8 +3,8 @@ def call(Map config) {
     node {
         echo "url ${config.url}, ${config.branch}, ${config.version}"
 
-        log.info "Checking out repo ${config.url}"
-        git branch: "${config.branch}", url: "${config.url}"
+        //log.info "Checking out repo ${config.url}"
+        //git branch: "${config.branch}", url: "${config.url}"
 
         log.info "Creating Tag ${config.version}"
         sh "git tag v${config.version}"

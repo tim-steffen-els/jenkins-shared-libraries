@@ -13,7 +13,7 @@ def updatePackage(String dependency, version){
 
     def file = readJSON file: fileName
     file['dependencies'][dependency] = version
-    
+
     writeJSON file: fileName, json: file, pretty: 4
 
 }
