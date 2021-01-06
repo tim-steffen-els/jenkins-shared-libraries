@@ -1,15 +1,24 @@
-def call(Map config) {
+//def call(Map config) {
+//    sh label: 'debugging', script: 'ls -lrt'
+//    if(fileExists('package.json')){
+//        log.info "Updating dependency ${config.dependency} to version ${config.version}"
+//        updatePackage(config.dependency, config.version, "package.json")
+//    } else {
+//        log.error "There is no package.json file to update. Skipping operation."
+//    }
+//
+//
+//}
+def update(Map config) {
     sh label: 'debugging', script: 'ls -lrt'
-    if(fileExists('package.json')){
+    if (fileExists('package.json')) {
         log.info "Updating dependency ${config.dependency} to version ${config.version}"
         updatePackage(config.dependency, config.version, "package.json")
     } else {
         log.error "There is no package.json file to update. Skipping operation."
     }
 
-
 }
-
 def updatePackage(String dependency, version, fileName){
 
     def file = readJSON file: fileName
