@@ -20,7 +20,7 @@ def tag(tag){
     log.info 'Creating tag from current branch: ${tag}'
    // sh "git config user.name ${JENKINS_COMMITTER_NAME}"
     //sh "git tag -d ${tag} || true" //This actually allows to auto-issue tags during a build - this will come in handy when we FINALLY have tags on master branch
-    sh "git tag -a v${tag} -m \"Tagged automatically by ${JENKINS_COMMITTER_NAME} as part of building process.\""
+    sh "git tag -a v${tag} -m \"Tagged automatically by Ol_Trusty_Riff_Raff as part of building process.\""
 
 }
 
