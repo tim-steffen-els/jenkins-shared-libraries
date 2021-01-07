@@ -4,7 +4,7 @@ def checkIfNotEmpty(string){
 
 
 def checkIfEmpty(string){
-    boolean isEmpty = true
+    boolean isEmpty = false
     if(string == null){
         log.info 'String is null'
         isEmpty = true
