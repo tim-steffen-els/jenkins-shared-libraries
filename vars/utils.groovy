@@ -1,3 +1,8 @@
+def checkIfNotEmpty(string){
+    return !checkIfNotEmpty(string)
+}
+
+
 def checkIfEmpty(string){
     boolean isEmpty = true
     if(string == null){

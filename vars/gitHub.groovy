@@ -3,7 +3,7 @@ final JENKINS_COMMITTER_NAME = 'Ol_Trusty_Riff_Raff'
 def returnTag(version, branch){
     if(tagDoesNotExist(version)){
 
-        checkout(branch)
+        checkout('v' + branch)
         tag(version)
         push()
     } else {
