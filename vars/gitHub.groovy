@@ -1,4 +1,4 @@
-final JENKINS_COMMITTER_NAME = 'Ol_Trusty_Riff_Raff'
+//final JENKINS_COMMITTER_NAME = 'Ol_Trusty_Riff_Raff'
 
 def returnTag(version, branch){
     if(tagDoesNotExist(version)){
@@ -18,7 +18,7 @@ def checkout(branch){
 
 def tag(tag){
     log.info 'Creating tag from current branch: ${tag}'
-    sh "git config user.name ${JENKINS_COMMITTER_NAME}"
+   // sh "git config user.name ${JENKINS_COMMITTER_NAME}"
     //sh "git tag -d ${tag} || true" //This actually allows to auto-issue tags during a build - this will come in handy when we FINALLY have tags on master branch
     sh "git tag -a v${tag} -m \"Tagged automatically by ${JENKINS_COMMITTER_NAME} as part of building process.\""
 
