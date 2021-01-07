@@ -20,12 +20,12 @@ def descriptionBuilder(Map config){
     description = ""
     if(config.containsKey('branch')){
         if(checkIfNotEmpty(config.branch)){
-            description = description + "Branch: ${config.branch} ,"
+            description = description + "| Branch: ${config.branch} |"
         }
     }
     if(config.containsKey('tag')){
         if(checkIfNotEmpty(config.tag)){
-            description = description + "Tag: ${config.tag} ,"
+            description = description + "| Tag: ${config.tag} |"
         }
     }
     return description
