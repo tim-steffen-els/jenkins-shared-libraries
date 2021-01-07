@@ -28,5 +28,5 @@ def descriptionBuilder(Map config){
             description = description + "| Tag: ${config.tag} |"
         }
     }
-    return description.replace("||", "|")
+    return description
 }
