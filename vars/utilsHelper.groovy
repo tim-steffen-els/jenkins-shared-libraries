@@ -19,10 +19,14 @@ def checkIfEmpty(string){
 def descriptionBuilder(Map config){
     description = ""
     if(config.containsKey('branch')){
-        description = description + "Branch: ${config.branch}"
+        if(checkIfNotEmpty(config.containsKey('branch'))){
+            description = description + "Branch: ${config.branch} ,"
+        }
     }
     if(config.containsKey('tag')){
-        description = description + "Tag: ${config.tag}"
+        if(checkIfNotEmpty(config.containsKey('tag'))){
+            description = description + "Tag: ${config.tag} ,"
+        }
     }
     return description
 }
