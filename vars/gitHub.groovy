@@ -1,4 +1,4 @@
-//final JENKINS_COMMITTER_NAME = 'Ol_Trusty_Riff_Raff'
+final JENKINS_COMMITTER_NAME = 'Ol_Trusty_Riff_Raff'
 
 def returnTag(version, branch){
     if(tagDoesNotExist(version)){
