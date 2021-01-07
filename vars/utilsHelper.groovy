@@ -1,5 +1,5 @@
 def checkIfNotEmpty(string){
-    return !checkIfNotEmpty(string)
+    return !checkIfEmpty(string)
 }
 
 
