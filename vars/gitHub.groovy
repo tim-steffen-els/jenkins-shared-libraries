@@ -1,7 +1,7 @@
 final JENKINS_COMMITTER_NAME = 'Ol_Trusty_Riff_Raff'
 
 def magic(tagVersion, branch){
-    if(utils.checkIfNotEmpty(tagVersion)){
+    if(utilsHelper.checkIfNotEmpty(tagVersion)){
         log.info 'Getting tag : ${tag} from branch ${branch}'
         returnTag(tagVersion, branch)
     } else {
