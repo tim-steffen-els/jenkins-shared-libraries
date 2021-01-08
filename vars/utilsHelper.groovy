@@ -22,7 +22,7 @@ def stringToMap(string){
 
     def map =[:]
     if(checkIfNotEmpty(string)){
-        string.split(',').each {item ->
+        string.split{','}.each {item ->
             def keyAndValue = item.split {':'}
             map[keyAndValue[0], keyAndValue[1]]
         }
