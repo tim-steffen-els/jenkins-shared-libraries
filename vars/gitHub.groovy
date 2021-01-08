@@ -1,8 +1,18 @@
 final JENKINS_COMMITTER_NAME = 'Ol_Trusty_Riff_Raff'
 
-def returnTag(tagVersion, branch){
-    if(tagDoesNotExist(tag)){
+def magic(tagVersion, branch){
+    if(utils.checkIfNotEmpty(tagVersion)){
+        log.info 'Getting tag : ${tag} from branch ${branch}'
+        returnTag(tagVersion, branch)
+    } else {
+        log.info 'Checking out branch : ${branch}'
+        checkout(branch)
+    }
+}
 
+def returnTag(tagVersion, branch){
+
+    if(tagDoesNotExist(tagVersion)){
         checkout(branch)
         tag(tagVersion)
         push()
