@@ -16,6 +16,27 @@ def checkIfEmpty(string){
 }
 
 
+//['@campuspack/frontend' : '1.0.0']   "loi-build:2.0.0, @campuspack/frontend:4.0.0"
+
+def stringToMap(string){
+
+    def map =[:]
+    if(checkIfNotEmpty(string)){
+        string.split(',').each {item ->
+            def keyAndValue = item.split {':'}
+            map[keyAndValue[0], keyAndValue[1]]
+        }
+    }
+    return map
+}
+
+/**
+ * This is a builder method to create consistent descriptions for runs.
+ *  - Current options for map: branch, tag
+ *
+ * @param config - A map to provide variables
+ * @return
+ */
 def descriptionBuilder(Map config){
     description = ""
     if(config.containsKey('branch')){
