@@ -22,32 +22,32 @@ def processLocators(tagVersion, branch, dependency){
     }
 }
 
-/**
- * This method is used to create a tag from a given branch. If the
- * tag already exist, it will return the existing tag.
- *
- * @param tagVersion
- * @param branch
- * @return
- * @throws NullPointerException
- */
-//returnTag
-def processTag(tagVersion, branch, dependency) throws NullPointerException {
-    if(utils.checkIfEmpty(tagVersion)){
-        throw NullPointerException('tagVersion must always be defined when using processTag(tagVersion, branch)')
-    }
-    if(tagDoesNotExist(tagVersion)){
-        log.info 'Creating tag : ${tag} from branch ${branch}'
-        checkout(branch)
-        //THIS means i need to break it out to a new class
-        nodeHelper.update(dependency)
-        tag(tagVersion)
-        push()
-    } else {
-        log.info 'Checking out tag: ${tag} . Branch will be ignored.}'
-        checkout('v' + tagVersion)
-    }
-}
+///**
+// * This method is used to create a tag from a given branch. If the
+// * tag already exist, it will return the existing tag.
+// *
+// * @param tagVersion
+// * @param branch
+// * @return
+// * @throws NullPointerException
+// */
+////returnTag
+//def processTag(tagVersion, branch, dependency) throws NullPointerException {
+//    if(utils.checkIfEmpty(tagVersion)){
+//        throw NullPointerException('tagVersion must always be defined when using processTag(tagVersion, branch)')
+//    }
+//    if(tagDoesNotExist(tagVersion)){
+//        log.info 'Creating tag : ${tag} from branch ${branch}'
+//        checkout(branch)
+//        //THIS means i need to break it out to a new class
+//        nodeHelper.update(dependency)
+//        tag(tagVersion)
+//        push()
+//    } else {
+//        log.info 'Checking out tag: ${tag} . Branch will be ignored.}'
+//        checkout('v' + tagVersion)
+//    }
+//}
 
 /**
  * This method wraps the git command for checking out a branch and provides
