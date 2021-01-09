@@ -12,7 +12,7 @@ def processTag(tagVersion, branch, dependency) throws NullPointerException {
     if(utilsHelper.checkIfEmpty(tagVersion)){
         throw NullPointerException('tagVersion must always be defined when using processTag(tagVersion, branch)')
     }
-    if(tagDoesNotExist(tagVersion)){
+    if(gitHub.tagDoesNotExist(tagVersion)){
         log.info 'Creating tag : ${tag} from branch ${branch}'
         gitHub.checkout(branch)
         if(utilsHelper.checkIfNotEmpty(dependency)){
