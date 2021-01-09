@@ -11,7 +11,7 @@ final JENKINS_COMMITTER_NAME = 'Ol_Trusty_Riff_Raff'
  * @return
  */
 //magic
-def processLocators(tagVersion, branch){
+def processLocators(tagVersion, branch, dependency){
     if(utilsHelper.checkIfNotEmpty(tagVersion)){
 
         log.info 'Processing Tag: ${tag} with branch: ${branch}.'
@@ -32,13 +32,15 @@ def processLocators(tagVersion, branch){
  * @throws NullPointerException
  */
 //returnTag
-def processTag(tagVersion, branch) throws NullPointerException {
+def processTag(tagVersion, branch, dependency) throws NullPointerException {
     if(utils.checkIfEmpty(tagVersion)){
         throw NullPointerException('tagVersion must always be defined when using processTag(tagVersion, branch)')
     }
     if(tagDoesNotExist(tagVersion)){
         log.info 'Creating tag : ${tag} from branch ${branch}'
         checkout(branch)
+        //THIS means i need to break it out to a new class
+        nodeHelper.update(dependency)
         tag(tagVersion)
         push()
     } else {
