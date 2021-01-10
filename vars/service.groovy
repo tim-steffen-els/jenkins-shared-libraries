@@ -13,13 +13,13 @@ def processTag(tagVersion, branch, dependency) throws NullPointerException {
         throw NullPointerException('tagVersion must always be defined when using processTag(tagVersion, branch)')
     }
     if(gitHub.tagDoesNotExist(tagVersion)){
-        log.info "Creating tag : ${tag} from branch ${branch} with dependencies : ${dependency}"
+        log.info "Creating tag : ${tagVersion} from branch ${branch} with dependencies : ${dependency}"
         gitHub.checkout(branch)
         if(utilsHelper.checkIfNotEmpty(dependency)){
-            wrapInStage("Update node depenedcies. ")
-            log.info 'Updating node dependencies.'
-            nodeHelper.update(dependency)
-            nodeHelper.updateVersion(tagVersion)
+            wrapInStage("Update node depenedcies. ", dependency, tagVersion)
+           // log.info 'Updating node dependencies.'
+           // nodeHelper.update(dependency)
+           // nodeHelper.updateVersion(tagVersion)
         }
         gitHub.tag(tagVersion)
         gitHub.push()
@@ -29,7 +29,7 @@ def processTag(tagVersion, branch, dependency) throws NullPointerException {
     }
 }
 
-def wrapInStage(name){
+def wrapInStage(name, dependency,tagVersion){
     stage(name){
         steps {
             script {
