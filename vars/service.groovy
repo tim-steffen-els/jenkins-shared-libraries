@@ -15,12 +15,12 @@ def processTag(tagVersion, branch, dependency) throws NullPointerException {
     if(gitHub.tagDoesNotExist(tagVersion)){
         log.info "Creating tag : ${tagVersion} from branch ${branch} with dependencies : ${dependency}"
         gitHub.checkout(branch)
-        if(utilsHelper.checkIfNotEmpty(dependency)){
+        //if(utilsHelper.checkIfNotEmpty(dependency)){
             wrapInStage("Update node depenedcies. ", dependency, tagVersion)
            // log.info 'Updating node dependencies.'
            // nodeHelper.update(dependency)
            // nodeHelper.updateVersion(tagVersion)
-        }
+        //}
         gitHub.tag(tagVersion)
         gitHub.push()
     } else {
@@ -30,6 +30,11 @@ def processTag(tagVersion, branch, dependency) throws NullPointerException {
 }
 
 def wrapInStage(name, dependency,tagVersion){
+    when {
+        expression {
+            return utilsHelper.checkIfNotEmpty(dependency)
+        }
+    }
     stage(name){
         steps {
             script {
