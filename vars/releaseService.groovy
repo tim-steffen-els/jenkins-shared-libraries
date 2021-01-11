@@ -28,7 +28,7 @@ def processTag(tagVersion, branch, dependency) throws NullPointerException {
         github.tag(tagVersion)
         github.push()
     } else {
-        log.info "Checking out tag: ${tag} . Branch will be ignored.}"
+        log.info "Checking out tag: ${tagVersion} . Branch will be ignored.}"
         github.checkout('v' + tagVersion)
     }
 }
