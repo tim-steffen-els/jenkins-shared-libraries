@@ -23,12 +23,15 @@ private def updateDependency(dependency, version) {
 
 }
 
-private def updatePackage(dependency, version) {
+private def updatePackage(Sting dependency, version) {
+    log.info "Updateing the ------------ package"
     ObjectMapper mapper = new ObjectMapper()
     Object value = mapper.valueToTree(new File("package.json"))
-    value = value.get('dependencies').get(dependency)
+    value = value.get('dependencies')
 
     log.info "Hello ${value}"
+    log.info "Hello3 ${value.get(dependency)}"
+
 
     def file = readJSON file: "package.json"
     file['dependencies'][dependency] = version
