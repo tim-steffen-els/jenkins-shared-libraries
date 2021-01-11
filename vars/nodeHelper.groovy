@@ -23,11 +23,11 @@ private def updateDependency(dependency, version) {
 
 }
 
-private def updatePackage(String dependency, version) {
+private def updatePackage(dependency, version) {
     def file = readJSON file: dependencyFile
     file['dependencies'][dependency] = version
 
-    writeFile(fileName)
+    writeFile(dependencyFile)
 }
 
 /**
