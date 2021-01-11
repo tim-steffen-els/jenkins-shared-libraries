@@ -1,3 +1,5 @@
+import com.fasterxml.jackson.databind.ObjectMapper
+
 /**
  * This method is used to process multiple dependency updates. This
  * is given as a map in the following format : def map = ['@campuspack/frontend' : '1.0.0','@campuspack/backend' : '1.0.0']
