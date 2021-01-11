@@ -25,8 +25,11 @@ private def updateDependency(dependency, version) {
 
 private def updatePackage(dependency, version) {
     ObjectMapper mapper = new ObjectMapper()
-    Object value = mapper.readValue(new File("package.json"))
-    
+    Object value = mapper.valueToTree(new File("package.json"))
+    value = value.get('dependencies').get(dependency)
+
+    log.info "Hello ${value}"
+
     def file = readJSON file: "package.json"
     file['dependencies'][dependency] = version
 
