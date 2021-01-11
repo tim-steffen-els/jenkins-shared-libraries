@@ -21,7 +21,8 @@ def processTag(tagVersion, branch, dependency) throws NullPointerException {
         github.checkout(branch)
         if(utilsHelper.checkIfNotEmpty(dependency)) {
             log.info "Updating node dependencies."
-            nodeHelper.update(dependency)
+            dependencyMap = utilsHelper.stringToMap(dependency)
+            nodeHelper.updateDependencies(dependencyMap)
             nodeHelper.updateVersion(tagVersion)
         }
         github.tag(tagVersion)
