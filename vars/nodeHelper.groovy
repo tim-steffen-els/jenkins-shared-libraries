@@ -1,5 +1,3 @@
-def dependencyFile = "package.json"
-
 /**
  * This method is used to process multiple dependency updates. This
  * is given as a map in the following format : def map = ['@campuspack/frontend' : '1.0.0','@campuspack/backend' : '1.0.0']
@@ -24,10 +22,10 @@ private def updateDependency(dependency, version) {
 }
 
 private def updatePackage(dependency, version) {
-    def file = readJSON file: dependencyFile
+    def file = readJSON file: "package.json"
     file['dependencies'][dependency] = version
 
-    writeFile(dependencyFile)
+    writeFile("package.json")
 }
 
 /**
@@ -37,7 +35,7 @@ private def updatePackage(dependency, version) {
  * @return
  */
 def updateVersion(version) {
-    def file = readJSON file: dependencyFile
+    def file = readJSON file: "package.json"
     file['version'] = version
 
     writeFile(file)
@@ -45,5 +43,5 @@ def updateVersion(version) {
 
 private writeFile(file) {
     log.info "Writing file to disk with updates."
-    writeJSON file: dependencyFile, json: file, pretty: 4
+    writeJSON file: "package.json", json: file, pretty: 4
 }
