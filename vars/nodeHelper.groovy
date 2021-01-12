@@ -27,7 +27,7 @@ private def updateDependency(dependency, version) {
 private def updatePackage(String dependency, version) {
     log.info "Updateing the ------------ package"
     sh 'ls -lrt'
-    File file = new File("package.json")
+    File file = new File("/var/jenkins_home/workspace/Frontend-Build/package.json")
     ObjectMapper mapper = new ObjectMapper()
     Object value = mapper.readValue(file, Objects.class)
     value = value.dependencies
