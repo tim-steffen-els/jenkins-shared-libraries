@@ -32,9 +32,9 @@ private def updatePackage(String dependency, version) {
     sh 'ls -lrt'
     File file = new File("/var/jenkins_home/workspace/Frontend-Build/package.json")
     ObjectMapper mapper = new ObjectMapper()
-    Object value = mapper.readValue(file, ObjectNode.class)
+    Object value = mapper.readTree(file)
 //    Object value = mapper.readValue(file, Object.class)
-    value2 = value.dependencies
+    //value2 = value.dependencies
 
 //    def mapper2 = new ObjectMapper().setVisibility(JsonMethod.FIELD, Visibility.ANY);
 //    mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -46,7 +46,7 @@ private def updatePackage(String dependency, version) {
     log.info "Hello1 ${value}"  //This is the whole json
     log.info "Hello2 ${file.toString()}"
 //    log.info "Hello3 ${value.dependency}"
-    log.info "Hello3 ${value.get('dependency')}"
+    log.info "Hello3 ${value.get('dependency').asText()}"
 
 
     //def file2 = readJSON file: "package.json"
