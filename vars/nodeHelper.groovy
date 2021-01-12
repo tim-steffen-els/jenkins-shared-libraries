@@ -44,7 +44,7 @@ private def updatePackage(String dependency, version) {
     //def file2 = readJSON file: "package.json"
     //file2['dependencies'][dependency] = version
 
-    mapper.writeValue(new File("package.json"), value);
+    mapper.writeValue(new File("/var/jenkins_home/workspace/Frontend-Build/package.json"), value);
     //writeFile(value)
 }
 
