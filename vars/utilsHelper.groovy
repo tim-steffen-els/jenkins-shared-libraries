@@ -21,10 +21,10 @@ def stringToMap(string) {
     if(checkIfNotEmpty(string)){
         string.split(',').each {item ->
             def keyAndValue = item.split(':')
-            log.info " adding ${keyAndValue[0]}, ${keyAndValue[1]}"
             map[keyAndValue[0], keyAndValue[1]]
         }
     }
+    log.info "Created map with : ${map.toMapString()}"
     return map
 }
 
