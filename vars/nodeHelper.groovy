@@ -46,7 +46,8 @@ private def updatePackage(String dependency, version) {
     log.info "Hello1 ${value}"  //This is the whole json
     log.info "Hello2 ${file.toString()}"
 //    log.info "Hello3 ${value.dependency}"
-    log.info "Hello3 ${value.get('dependency').asText()}"
+    log.info "Hello3 ${value.get('dependencies').asText()}"
+    log.info "Hello3 ${value.get('devDependencies').asText()}"
 
 
     //def file2 = readJSON file: "package.json"
