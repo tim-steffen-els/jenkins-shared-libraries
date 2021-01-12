@@ -27,7 +27,7 @@ private def updateDependency(dependency, version) {
 private def updatePackage(String dependency, version) {
     log.info "Updateing the ------------ package"
     ObjectMapper mapper = new ObjectMapper()
-    Object value = mapper.valueToTree(new File("package.json"))
+    Object value = mapper.readValue(new File("package.json"))
     value = value.dependencies
 
     log.info "Hello ${value}"
