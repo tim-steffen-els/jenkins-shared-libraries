@@ -1,5 +1,6 @@
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.databind.node.ObjectNode
 
 /**
  * This method is used to process multiple dependency updates. This
@@ -31,7 +32,7 @@ private def updatePackage(String dependency, version) {
     sh 'ls -lrt'
     File file = new File("/var/jenkins_home/workspace/Frontend-Build/package.json")
     ObjectMapper mapper = new ObjectMapper()
-    Object value = mapper.readValue(file, new com.sun.xml.internal.bind.api.TypeReference()<Collection>())
+    Object value = mapper.readValue(file, ObjectNode.class)
 //    Object value = mapper.readValue(file, Object.class)
     value2 = value.dependencies
 
@@ -44,7 +45,7 @@ private def updatePackage(String dependency, version) {
     log.info "Hello ${value2}"
     log.info "Hello1 ${value}"  //This is the whole json
     log.info "Hello2 ${file.toString()}"
-    log.info "Hello3 ${value.dependency}"
+//    log.info "Hello3 ${value.dependency}"
     log.info "Hello3 ${value.get('dependency')}"
 
 
