@@ -31,13 +31,11 @@ private def updatePackage(String dependency, version) {
     log.info "Dep : ${dependency}, Ver: ${version}"
     File file = new File("/var/jenkins_home/workspace/Frontend-Build/package.json")
     ObjectMapper mapper = new ObjectMapper()
-    Object value = mapper.readTree("package.json")
+    Object value = mapper.readTree(file)
 
-    log.info "Hello2 ${value.get("name")}"
-    log.info "Hello3 ${value.get("dependencies").get(dependency)}"
-    log.info "Hello4 ${value.get("devDependencies").get(dependency)}"
-
-    mapper.writeValue(new File("/var/jenkins_home/workspace/Frontend-Build/package.json"), value);
+    value.get("dependencies").putAt(dependency, version)
+    mapper.writeValue(new File("/var/jenkins_home/workspace/Frontend-Build/package.json"), value)
+    
 }
 
 /**
