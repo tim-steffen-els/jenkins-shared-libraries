@@ -30,9 +30,9 @@ private def updatePackage(String dependency, version) {
     File file = new File("/var/jenkins_home/workspace/Frontend-Build/package.json")
     ObjectMapper mapper = new ObjectMapper()
     Object value = mapper.readValue(file, Object.class)
-    value = value.dependencies
+    value2 = value.dependencies
 
-    log.info "Hello ${value}"
+    log.info "Hello ${value2}"
     log.info "Hello3 ${value.get(dependency)}"
 
 
