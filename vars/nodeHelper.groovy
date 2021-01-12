@@ -34,9 +34,9 @@ private def updatePackage(String dependency, version) {
     value2 = value.dependencies
 
     log.info "Hello ${value2}"
-    log.info "Hello1 ${value}"
+    log.info "Hello1 ${value}"  //This is the whole json
     log.info "Hello2 ${file.toString()}"
-    log.info "Hello3 ${value.get(dependency)}"
+    log.info "Hello3 ${value.dependency}"
     log.info "Hello3 ${value.get('dependency')}"
 
 
