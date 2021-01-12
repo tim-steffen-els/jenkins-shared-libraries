@@ -1,3 +1,4 @@
+
 import com.fasterxml.jackson.databind.ObjectMapper
 
 /**
@@ -30,7 +31,7 @@ private def updatePackage(String dependency, version) {
     sh 'ls -lrt'
     File file = new File("/var/jenkins_home/workspace/Frontend-Build/package.json")
     ObjectMapper mapper = new ObjectMapper()
-    Object value = mapper.readValue(file, new TypeReference<Collection>())
+    Object value = mapper.readValue(file, new com.sun.xml.internal.bind.api.TypeReference()<Collection>())
 //    Object value = mapper.readValue(file, Object.class)
     value2 = value.dependencies
 
