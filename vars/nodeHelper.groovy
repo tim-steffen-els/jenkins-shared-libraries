@@ -42,7 +42,7 @@ private def updatePackage(String dependency, version) {
 //    });
 
 
-    log.info "Hello ${value2}"
+    //og.info "Hello ${value2}"
     log.info "Hello1 ${value}"  //This is the whole json
     log.info "Hello2 ${file.toString()}"
 //    log.info "Hello3 ${value.dependency}"
