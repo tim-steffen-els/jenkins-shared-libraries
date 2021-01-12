@@ -1,4 +1,4 @@
-
+import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.node.ObjectNode
 
@@ -27,15 +27,21 @@ private def updateDependency(dependency, version) {
 }
 
 private def updatePackage(String dependency, version) {
-    log.info "Updateing the ------------ package"
+    log.info "Updating the ------------ package"
     log.info "Dep : ${dependency}, Ver: ${version}"
+
     File file = new File("/var/jenkins_home/workspace/Frontend-Build/package.json")
     ObjectMapper mapper = new ObjectMapper()
-    Object value = mapper.readTree(file)
+    ObjectNode value =
+            mapper.readTree(file)
+            .get("dependencies")
+            .get(dependency)
 
-    value.get("dependencies").putAt(dependency, version)
-    mapper.writeValue(new File("/var/jenkins_home/workspace/Frontend-Build/package.json"), value)
+    JsonNode newNode = "{\"${dependency}\":\"${version}\"}"
+    value.set(dependency, newNode )
     
+    mapper.writeValue(new File("/var/jenkins_home/workspace/Frontend-Build/package.json"), value)
+
 }
 
 /**
