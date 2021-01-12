@@ -17,10 +17,11 @@ def checkIfEmpty(string) {
 
 
 def stringToMap(string) {
-    def map =[:]
+    Map map =[:]
     if(checkIfNotEmpty(string)){
         string.split(',').each {item ->
             def keyAndValue = item.split(':')
+            log.info " adding ${keyAndValue[0]}, ${keyAndValue[1]}"
             map[keyAndValue[0], keyAndValue[1]]
         }
     }
