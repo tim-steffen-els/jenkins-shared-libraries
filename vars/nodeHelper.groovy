@@ -33,21 +33,11 @@ private def updatePackage(String dependency, version) {
     File file = new File("/var/jenkins_home/workspace/Frontend-Build/package.json")
     ObjectMapper mapper = new ObjectMapper()
     Object value = mapper.readTree(file)
-//    Object value = mapper.readValue(file, Object.class)
-    //value2 = value.dependencies
 
-//    def mapper2 = new ObjectMapper().setVisibility(JsonMethod.FIELD, Visibility.ANY);
-//    mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-//    def obj = mapper.readValue(file, new TypeReference<Collection>(){
-//    });
-
-
-    //og.info "Hello ${value2}"
     log.info "Hello1 ${value}"  //This is the whole json
-    log.info "Hello2 ${file.toString()}"
+    log.info "Hello2 ${value.get("name")}"
 //    log.info "Hello3 ${value.dependency}"
-    log.info "Hello3 ${value.get("name").asText()}"
-    log.info "Hello3 ${value.get('devDependencies').asText()}"
+    log.info "Hello3 ${value.get('dependency').asText()}"
 
 
     //def file2 = readJSON file: "package.json"
