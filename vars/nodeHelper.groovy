@@ -26,6 +26,7 @@ private def updateDependency(dependency, version) {
 
 private def updatePackage(String dependency, version) {
     log.info "Updateing the ------------ package"
+    sh 'ls -lrt'
     File file = new File("package.json")
     ObjectMapper mapper = new ObjectMapper()
     Object value = mapper.readValue(file, Objects.class)
