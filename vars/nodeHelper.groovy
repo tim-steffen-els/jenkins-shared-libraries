@@ -26,6 +26,7 @@ private def updateDependency(dependency, version) {
 
 private def updatePackage(String dependency, version) {
     log.info "Updateing the ------------ package"
+    log.info "Dep : ${dependency}, Ver: ${version}"
     sh 'ls -lrt'
     File file = new File("/var/jenkins_home/workspace/Frontend-Build/package.json")
     ObjectMapper mapper = new ObjectMapper()
@@ -33,13 +34,16 @@ private def updatePackage(String dependency, version) {
     value2 = value.dependencies
 
     log.info "Hello ${value2}"
+    log.info "Hello1 ${value}"
+    log.info "Hello2 ${file.toString()}"
     log.info "Hello3 ${value.get(dependency)}"
+    log.info "Hello3 ${value.get('dependency')}"
 
 
     //def file2 = readJSON file: "package.json"
     //file2['dependencies'][dependency] = version
 
-    writeFile(file)
+    writeFile(value)
 }
 
 /**
