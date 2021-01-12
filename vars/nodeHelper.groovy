@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
  * @return
  */
 def updateDependencies(Map config) {
+    log.info "config : ${config.toMapString()}"
     config.each {
         dependency, version-> updateDependency(dependency, version)
     }
