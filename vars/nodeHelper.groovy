@@ -30,8 +30,15 @@ private def updatePackage(String dependency, version) {
     sh 'ls -lrt'
     File file = new File("/var/jenkins_home/workspace/Frontend-Build/package.json")
     ObjectMapper mapper = new ObjectMapper()
-    Object value = mapper.readValue(file, Object.class)
+    Object value = mapper.readValue(file, new TypeReference<Collection>)
+//    Object value = mapper.readValue(file, Object.class)
     value2 = value.dependencies
+
+//    def mapper2 = new ObjectMapper().setVisibility(JsonMethod.FIELD, Visibility.ANY);
+//    mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+//    def obj = mapper.readValue(file, new TypeReference<Collection>(){
+//    });
+
 
     log.info "Hello ${value2}"
     log.info "Hello1 ${value}"  //This is the whole json
