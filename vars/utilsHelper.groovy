@@ -21,7 +21,7 @@ def stringToMap(string) {
     if(checkIfNotEmpty(string)){
         string.split(',').each {item ->
             def keyAndValue = item.split(':')
-            map[keyAndValue[0], keyAndValue[1]]
+            map.put(keyAndValue[0], keyAndValue[1])
         }
     }
     log.info "Created map with : ${map.toMapString()}"
