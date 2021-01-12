@@ -32,9 +32,9 @@ private def updatePackage(String dependency, version) {
     sh 'ls -lrt'
     File file = new File("/var/jenkins_home/workspace/Frontend-Build/package.json")
     ObjectMapper mapper = new ObjectMapper()
-    Object value = mapper.readTree(file)
+    Object value = mapper.readTree(file).
 
-    log.info "Hello1 ${value}"  //This is the whole json
+//    log.info "Hello1 ${value}"  //This is the whole json
     log.info "Hello2 ${value.get("name")}"
 //    log.info "Hello3 ${value.dependency}"
     log.info "Hello3 ${value.get('dependencies').asText()}"
