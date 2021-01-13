@@ -1,5 +1,6 @@
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.databind.node.ObjectNode
 
 /**
@@ -29,18 +30,29 @@ private def updateDependency(dependency, version) {
 private def updatePackage(String dependency, version) {
     log.info "Updating the ------------ package"
     log.info "Dep : ${dependency}, Ver: ${version}"
+//
+//    File file = new File("/var/jenkins_home/workspace/Frontend-Build/package.json")
+//    ObjectMapper mapper = new ObjectMapper()
+//    ObjectNode value =
+//            mapper.readTree(file)
+//            .get("dependencies")
+//            .get(dependency)
+//
+//    JsonNode newNode = "{\"${dependency}\":\"${version}\"}"
+//    value.set(dependency, newNode )
+//
+//    mapper.writeValue(new File("/var/jenkins_home/workspace/Frontend-Build/package.json"), value)
+//
 
     File file = new File("/var/jenkins_home/workspace/Frontend-Build/package.json")
-    ObjectMapper mapper = new ObjectMapper()
-    ObjectNode value =
-            mapper.readTree(file)
-            .get("dependencies")
-            .get(dependency)
 
-    JsonNode newNode = "{\"${dependency}\":\"${version}\"}"
-    value.set(dependency, newNode )
+    ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT)
+    JsonNode locatedNode = mapper.readTree(file)
+
+    JsonNode nodeParent = locatedNode.get("dependencies")
+    ((ObjectNode) nodeParent).put(dependency, version)
     
-    mapper.writeValue(new File("/var/jenkins_home/workspace/Frontend-Build/package.json"), value)
+    mapper.writeValue(file, locatedNode)
 
 }
 
