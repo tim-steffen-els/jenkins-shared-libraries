@@ -33,14 +33,14 @@ private def updatePackage(String dependency, version) {
 
 
     File file = new File("/var/jenkins_home/workspace/Frontend-Build/package.json")
-    jsonHelper(file, "dependencies", version)
-//    ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT)
-//    JsonNode locatedNode = mapper.readTree(file)
-//
-//    JsonNode nodeParent = locatedNode.get("dependencies")
-//    ((ObjectNode) nodeParent).put(dependency, version)
-//
-//    mapper.writeValue(file, locatedNode)
+
+    ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT)
+    JsonNode locatedNode = mapper.readTree(file)
+
+    JsonNode nodeParent = locatedNode.get("dependencies")
+    ((ObjectNode) nodeParent).put(dependency, version)
+
+    mapper.writeValue(file, locatedNode)
 
 }
 
@@ -52,7 +52,12 @@ private def updatePackage(String dependency, version) {
  */
 def updateVersion(version) {
     File file = new File("/var/jenkins_home/workspace/Frontend-Build/package.json")
-    jsonHelper(file, "dependencies", version)
+    ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT)
+    JsonNode locatedNode = mapper.readTree(file)
+
+    ((ObjectNode) locatedNode).put(version, version)
+
+    mapper.writeValue(file, locatedNode)
 //    def file = readJSON file: "package.json"
 //    file['version'] = version
 //
@@ -64,13 +69,13 @@ private writeFile(file) {
     writeJSON file: "package.json", json: file, pretty: 4
 }
 
-private jsonHelper(file, location, version){
+private jsonHelper(file, location, element, version){
 
     ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT)
     JsonNode locatedNode = mapper.readTree(file)
 
     JsonNode nodeParent = locatedNode.get(location)
-    ((ObjectNode) nodeParent).put(dependency, version)
+    ((ObjectNode) nodeParent).put(element, version)
 
     mapper.writeValue(file, locatedNode)
 }
