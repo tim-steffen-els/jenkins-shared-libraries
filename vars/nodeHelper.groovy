@@ -12,7 +12,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode
 def updateDependencies(Map config) {
     log.info "config : ${config.toMapString()}"
     config.each {
-        dependency, version-> updateDependency(dependency, version)
+        dependency, version-> updateDependency(dependency.toString().trim(), version.toString().trim())
     }
 }
 
@@ -51,7 +51,7 @@ private def updatePackage(String dependency, version) {
 
     JsonNode nodeParent = locatedNode.get("dependencies")
     ((ObjectNode) nodeParent).put(dependency, version)
-    
+
     mapper.writeValue(file, locatedNode)
 
 }
