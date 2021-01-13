@@ -30,29 +30,17 @@ private def updateDependency(dependency, version) {
 private def updatePackage(String dependency, version) {
     log.info "Updating the ------------ package"
     log.info "Dep : ${dependency}, Ver: ${version}"
-//
-//    File file = new File("/var/jenkins_home/workspace/Frontend-Build/package.json")
-//    ObjectMapper mapper = new ObjectMapper()
-//    ObjectNode value =
-//            mapper.readTree(file)
-//            .get("dependencies")
-//            .get(dependency)
-//
-//    JsonNode newNode = "{\"${dependency}\":\"${version}\"}"
-//    value.set(dependency, newNode )
-//
-//    mapper.writeValue(new File("/var/jenkins_home/workspace/Frontend-Build/package.json"), value)
-//
+
 
     File file = new File("/var/jenkins_home/workspace/Frontend-Build/package.json")
-
-    ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT)
-    JsonNode locatedNode = mapper.readTree(file)
-
-    JsonNode nodeParent = locatedNode.get("dependencies")
-    ((ObjectNode) nodeParent).put(dependency, version)
-
-    mapper.writeValue(file, locatedNode)
+    jsonHelper(file, "dependencies", version)
+//    ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT)
+//    JsonNode locatedNode = mapper.readTree(file)
+//
+//    JsonNode nodeParent = locatedNode.get("dependencies")
+//    ((ObjectNode) nodeParent).put(dependency, version)
+//
+//    mapper.writeValue(file, locatedNode)
 
 }
 
@@ -63,13 +51,26 @@ private def updatePackage(String dependency, version) {
  * @return
  */
 def updateVersion(version) {
-    def file = readJSON file: "package.json"
-    file['version'] = version
-
-    writeFile(file)
+    File file = new File("/var/jenkins_home/workspace/Frontend-Build/package.json")
+    jsonHelper(file, "dependencies", version)
+//    def file = readJSON file: "package.json"
+//    file['version'] = version
+//
+//    writeFile(file)
 }
 
 private writeFile(file) {
     log.info "Writing file to disk with updates."
     writeJSON file: "package.json", json: file, pretty: 4
+}
+
+private jsonHelper(file, location, version){
+
+    ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT)
+    JsonNode locatedNode = mapper.readTree(file)
+
+    JsonNode nodeParent = locatedNode.get(location)
+    ((ObjectNode) nodeParent).put(dependency, version)
+
+    mapper.writeValue(file, locatedNode)
 }
