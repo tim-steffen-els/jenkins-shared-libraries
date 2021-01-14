@@ -27,12 +27,12 @@ private def updateDependency(dependency, version) {
 
 }
 
-private def updatePackage(String dependency, version) {
+private def updatePackage(dependency, version) {
     log.info "Updating the ------------ package"
     log.info "Dep : ${dependency}, Ver: ${version}"
 
 
-    File file = new File("/var/jenkins_home/workspace/Frontend-Build/package.json")
+    File file = new File("${env.WORKSPACE}/package.json")
 
     ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT)
     JsonNode locatedNode = mapper.readTree(file)
@@ -51,31 +51,16 @@ private def updatePackage(String dependency, version) {
  * @return
  */
 def updateVersion(version) {
-    File file = new File("/var/jenkins_home/workspace/Frontend-Build/package.json")
+    File file = new File("${env.WORKSPACE}/package.json")
     ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT)
     JsonNode locatedNode = mapper.readTree(file)
 
     ((ObjectNode) locatedNode).put(version, version)
 
     mapper.writeValue(file, locatedNode)
+    //Below is a nicer way that requires a Jenkins update
 //    def file = readJSON file: "package.json"
 //    file['version'] = version
 //
 //    writeFile(file)
-}
-
-private writeFile(file) {
-    log.info "Writing file to disk with updates."
-    writeJSON file: "package.json", json: file, pretty: 4
-}
-
-private jsonHelper(file, location, element, version){
-
-    ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT)
-    JsonNode locatedNode = mapper.readTree(file)
-
-    JsonNode nodeParent = locatedNode.get(location)
-    ((ObjectNode) nodeParent).put(element, version)
-
-    mapper.writeValue(file, locatedNode)
 }
